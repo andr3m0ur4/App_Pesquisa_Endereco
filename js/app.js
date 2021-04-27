@@ -16,7 +16,7 @@ function getDadosEnderecoPorCEP(cep) {
 		return false
 	}
 
-	cep.replace('-', '')
+	cep = cep.replace('-', '')
 
 	if (document.getElementById('msg-erro')) {
 		document.getElementById('principal').removeChild(document.getElementById('msg-erro'))
@@ -29,13 +29,13 @@ function getDadosEnderecoPorCEP(cep) {
 
 	url = `https://viacep.com.br/ws/${cep}/json/unicode/`
 
-	let xmlHttp = new XMLHttpRequest()
+	const xmlHttp = new XMLHttpRequest()
 	xmlHttp.open('GET', url)
 
 	xmlHttp.onreadystatechange = () => {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			let dadosJSONText = xmlHttp.responseText
-			let dadosJSONObj = JSON.parse(dadosJSONText)
+			const dadosJSONText = xmlHttp.responseText
+			const dadosJSONObj = JSON.parse(dadosJSONText)
 
 			if (dadosJSONObj.erro) {
 				exibirErro()
